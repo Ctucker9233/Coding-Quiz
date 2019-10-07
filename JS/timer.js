@@ -5,19 +5,23 @@ timerText.textContent = "Timer: " + timer;
 
 function decrement() {
     timer = (15 * questionsObj.length);
-    setInterval(function () {
+    var quizTimer = setInterval(function () {
         seconds = parseInt(timer % 60, 10);
-
         seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        timerText.textContent = "Timer: " + seconds;
-
+        if (timer >= 0) {
+            timer--;
+            timerText.textContent = "Timer: " + seconds;
+            console.log(timer);
+        }
         if (timer === 0) {
-            window.location.pathname('/timeup.html')
+            clearInterval(quizTimer);
+            window.location.pathname = timeup.html
+            timerText.textContent = "Timer: " + seconds;
+            console.log(timer);
         }
     }, 1000);
-}
+};
 
-if (window.location.pathname == '/quiz') {
+if (window.location.href.indexOf("quiz") > -1) {
     decrement();
 }

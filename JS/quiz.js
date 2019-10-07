@@ -1,5 +1,8 @@
 var startBtn = document.querySelector('#start');
 
-startBtn.addEventListener('click', function(){
-    window.location.href = 'quiz.html';
-});
+if (window.location.href.indexOf("index") > -1){
+    startBtn.addEventListener('click', function(){
+        window.location.href = 'quiz.html';
+    });
+}
+    
