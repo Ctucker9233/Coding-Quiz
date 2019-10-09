@@ -15,12 +15,21 @@ function decrement() {
         }
         if (timer === 0) {
             clearInterval(quizTimer);
-            window.location.pathname = timeup.html
+            window.location.pathname = 'Coding-Quiz/timeup.html'
             timerText.textContent = "Timer: " + seconds;
             console.log(timer);
         }
+        if (questionLength === 0){
+            clearInterval(quizTimer);
+            window.location.pathname = 'Coding-Quiz/timeup.html'
+        }
     }, 1000);
 };
+
+function stopTimer() {
+    clearInterval(quizTimer);
+    window.location.pathname = 'Coding-Quiz/timeup.html'
+}
 
 if (window.location.href.indexOf("quiz") > -1) {
     decrement();

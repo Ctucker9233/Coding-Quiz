@@ -17,6 +17,6 @@ var questionsObj = [
     {
         title: "String values must be enclosed within _________ when being assigned to variables.",
         choices: ["commas", "curly brackets", "quotes", "parentheses"],
-        anwser: "quotes"
+        answer: "quotes"
     }
 ];
