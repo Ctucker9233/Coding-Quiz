@@ -1,36 +1,42 @@
 var timerText = document.querySelector('.navbar-text');
-var timer = 0;
-console.log(timer);
-timerText.textContent = "Timer: " + timer;
+var completeEl = document.querySelector('#complete');
+var scoreEl = document.querySelector('#your-score');
+var timeleft = (15 * questionsObj.length);
 
 function decrement() {
-    timer = (15 * questionsObj.length);
-    var quizTimer = setInterval(function () {
-        seconds = parseInt(timer % 60, 10);
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        if (timer >= 0) {
-            timer--;
-            timerText.textContent = "Timer: " + seconds;
-            console.log(timer);
-        }
-        if (timer === 0) {
-            clearInterval(quizTimer);
-            window.location.pathname = 'Coding-Quiz/timeup.html'
-            timerText.textContent = "Timer: " + seconds;
-            console.log(timer);
-        }
-        if (questionLength === 0){
-            clearInterval(quizTimer);
-            window.location.pathname = 'Coding-Quiz/timeup.html'
-        }
-    }, 1000);
-};
+    var downloadTimer = setInterval(function () {
+        timeleft--;
+        timerText.textContent = timeleft;
+        console.log(timeleft);
 
-function stopTimer() {
-    clearInterval(quizTimer);
-    window.location.pathname = 'Coding-Quiz/timeup.html'
+        if (questionLength === 0 || timeleft <= 0) {
+            sessionStorage.setItem('timer', timeleft)
+            console.log(timeleft);
+            window.location.href = 'timeup.html'
+            clearInterval(downloadTimer);
+            showScore();
+        }
+  
+    }, 1000);
+}
+
+function showScore() {
+    console.log(timeleft);
+    var newScore = timeleft;
+    if (window.location.href.indexOf('timeup') > -1) {
+        if (newScore === 0) {
+            completeEl.textContent = "Time is up!"
+            scoreEl.textContent = newScore;
+            console.log(newScore);
+        }
+        else {
+            completeEl.textcontent = "All done!"
+            scoreEl.textContent = "Your score is: " + newScore; +".";
+            console.log(newScore);
+        }
+    }
 }
 
 if (window.location.href.indexOf("quiz") > -1) {
-    decrement();
+    decrement(timer);
 }

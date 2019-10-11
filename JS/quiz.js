@@ -39,7 +39,17 @@ answerBtn.addEventListener('click', function (event) {
     if (element.matches('button') === true) {
         console.log(element);
         var answer = questionsObj[questionIndex].answer;
-        if (element.textContent === answer) {
+        if (element.textContent !== answer) {
+            timeleft = timeleft - 10;
+            questionGradeEl.textContent = "Incorrect";
+            questionIndex++;
+            questionLength--;
+            if (questionLength > 0){
+                removeButton();
+                renderQuestions();
+            }
+        }
+        else {
             questionGradeEl.textContent = "Correct!";
             questionIndex++;
             questionLength--;
@@ -47,18 +57,6 @@ answerBtn.addEventListener('click', function (event) {
                 removeButton();
                 renderQuestions();
             }
-
-        }
-        else {
-            questionGradeEl.textContent = "Incorrect";
-            timer = timer - 10;
-            questionIndex++;
-            questionLength--;
-            if (questionLength > 0){
-                removeButton();
-                renderQuestions();
-            }
-
         }
     }
 });
