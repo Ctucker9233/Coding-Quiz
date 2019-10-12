@@ -20,30 +20,9 @@ function decrement() {
         } 
 }
 
-function showScore() {
-    score = localStorage.getItem('timer');
-    console.log("score inside: ", score);
-    if (parseInt(score) <= 0) {
-        completeEl.textContent = "Time is up!"
-        completeEl.setAttribute("text-align", "center");
-        scoreEl.textContent = "Your score is: " + score +".";
-        console.log(score);
-    }
-    else {
-        completeEl.textContent = "All done!"
-        scoreEl.textContent = "Your score is: " + score +".";
-        console.log(score);
-    }
-}
-
 console.log("window.location: ",window.location.href.indexOf("timeup") );
 if (window.location.href.indexOf("quiz") > -1) {
     var downloadTimer = setInterval(decrement, 1000);
     
-}
-
-if (window.location.href.indexOf("timeup") > -1) {
-    console.log("logging score");
-    showScore();
 }
 
