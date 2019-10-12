@@ -1,6 +1,5 @@
 var timerText = document.querySelector('.navbar-text');
 var completeEl = document.querySelector('#complete');
-var scoreEl = document.querySelector('#your-score');
 var timeleft = (15 * questionsObj.length);
 var score;
 
@@ -22,7 +21,6 @@ function decrement() {
 
 console.log("window.location: ",window.location.href.indexOf("timeup") );
 if (window.location.href.indexOf("quiz") > -1) {
-    var downloadTimer = setInterval(decrement, 1000);
-    
+    var downloadTimer = setInterval(decrement, 1000);   
 }
 

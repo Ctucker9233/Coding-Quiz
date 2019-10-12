@@ -1,6 +1,7 @@
 var initialsInput = document.querySelector('input[type="text"]');
-var submitBtn = document.querySelector(('button[type="submit"]'));
-var scoreList = [];
+var submitBtn = document.querySelector('button[type="submit"]');
+var scoreEl = document.querySelector('#your-score')
+var scoreList = JSON.parse(localStorage.getItem('scores')) || [];
 var completeScore = "";
 
 function showScore() {
@@ -22,11 +23,10 @@ function showScore() {
 console.log("Final score " + score);
 
 submitBtn.addEventListener('click', function (event){
-    score = localStorage.getItem('timer');
+    //score = localStorage.getItem('timer');
     console.log("submit score:"+ score);
     completeScore = initialsInput.value + "-" + score;
     console.log("complete score:"+ completeScore);
-    scoreList = JSON.parse(localStorage.getItem('scores'));
     scoreList.push(completeScore);
     console.log(JSON.stringify(scoreList))
     localStorage.setItem('scores', JSON.stringify(scoreList));
