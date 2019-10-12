@@ -1,0 +1,21 @@
+#score-list{
+    border-bottom: 2px black solid;
+    padding: 10px;
+}
+
+.score-list{
+    margin: 5px;
+    max-width: 100%;
+
+}
+
+ul#score-list {
+   list-style-position: inside; 
+   background-color:lightgrey;
+}
+
+.btn-primary{
+    margin: 5px;
+    background-color: purple;
+    border-color: lightpink;
+}

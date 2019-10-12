@@ -4,6 +4,7 @@ var answerBtn = document.querySelector('#answer-btn');
 var questionGradeEl = document.querySelector('#question-grade');
 var questionIndex = 0;
 var questionLength = questionsObj.length;
+var scoreList = [];
 
 //only add and trigger event listener if user is on a certain page
 if (window.location.href.indexOf("index") > -1) {
@@ -64,4 +65,3 @@ answerBtn.addEventListener('click', function (event) {
 if (window.location.href.indexOf('quiz') > -1) {
     renderQuestions();
 }
-

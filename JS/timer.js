@@ -2,41 +2,48 @@ var timerText = document.querySelector('.navbar-text');
 var completeEl = document.querySelector('#complete');
 var scoreEl = document.querySelector('#your-score');
 var timeleft = (15 * questionsObj.length);
+var score;
+
+timerText.textContent = timeleft;
 
 function decrement() {
-    var downloadTimer = setInterval(function () {
-        timeleft--;
-        timerText.textContent = timeleft;
-        console.log(timeleft);
+    timeleft--;
+    timerText.textContent = timeleft;
+    score = timeleft;
 
+        console.log("score is: ", score);
         if (questionLength === 0 || timeleft <= 0) {
-            sessionStorage.setItem('timer', timeleft)
-            console.log(timeleft);
+            localStorage.setItem('timer', timeleft)
+            console.log("quiz end" + timeleft);
             window.location.href = 'timeup.html'
             clearInterval(downloadTimer);
-            showScore();
-        }
-  
-    }, 1000);
+        } 
 }
 
 function showScore() {
-    console.log(timeleft);
-    var newScore = timeleft;
-    if (window.location.href.indexOf('timeup') > -1) {
-        if (newScore === 0) {
-            completeEl.textContent = "Time is up!"
-            scoreEl.textContent = newScore;
-            console.log(newScore);
-        }
-        else {
-            completeEl.textcontent = "All done!"
-            scoreEl.textContent = "Your score is: " + newScore; +".";
-            console.log(newScore);
-        }
+    score = localStorage.getItem('timer');
+    console.log("score inside: ", score);
+    if (parseInt(score) <= 0) {
+        completeEl.textContent = "Time is up!"
+        completeEl.setAttribute("text-align", "center");
+        scoreEl.textContent = "Your score is: " + score +".";
+        console.log(score);
+    }
+    else {
+        completeEl.textContent = "All done!"
+        scoreEl.textContent = "Your score is: " + score +".";
+        console.log(score);
     }
 }
 
+console.log("window.location: ",window.location.href.indexOf("timeup") );
 if (window.location.href.indexOf("quiz") > -1) {
-    decrement(timer);
+    var downloadTimer = setInterval(decrement, 1000);
+    
 }
+
+if (window.location.href.indexOf("timeup") > -1) {
+    console.log("logging score");
+    showScore();
+}
+
